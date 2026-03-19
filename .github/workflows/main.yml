@@ -1,0 +1,30 @@
+name: Build & Push Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Lấy code
+      - name: Checkout code
+        uses: actions/checkout@v6.0.2
+
+      # 2. Đăng nhập Docker Hub
+      - name: Login Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # 3. Build Docker Image
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/nguyenthong202/duanjava:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/nguyenthong202/duanjava:${{ github.sha }} .
+
+      # 4. Push Image lên Docker Hub
+      - name: Push Docker Image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/nguyenthong202/duanjava:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/nguyenthong202/duanjava:${{ github.sha }}
