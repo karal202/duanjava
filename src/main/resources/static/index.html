@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Thông | Frontend Developer</title>
+    <meta name="description" content="Portfolio của Nguyễn Thông - Frontend Developer intern với kinh nghiệm React, Spring Boot, và thiết kế web hiện đại.">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS reset and variables */
+        :root {
+            --bg-color: #050505;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-1: #6366f1; /* Indigo */
+            --accent-2: #ec4899; /* Pink */
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Abstract Background Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            width: 40vw;
+            height: 40vw;
+            background: rgba(99, 102, 241, 0.25);
+            top: -10%;
+            left: -10%;
+        }
+
+        .orb-2 {
+            width: 45vw;
+            height: 45vw;
+            background: rgba(236, 72, 153, 0.15);
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.05); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header / Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            font-weight: 500;
+        }
+
+        .badge i {
+            color: var(--accent-2);
+            margin-right: 8px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: white;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 7rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--accent-1);
+        }
+
+        /* Skills/Tech Stack */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,0.05));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .skill-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(236, 72, 153, 0.4);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-category {
+            font-size: 0.85rem;
+            color: var(--accent-2);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+            display: block;
+            font-weight: 500;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .project-category::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent-2);
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-tag {
+            font-size: 0.8rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 50px;
+            color: #d1d5db;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+
+        .project-link:hover {
+            color: var(--accent-1);
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-box p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 5rem;
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+        }
+
+        .social-links a:hover {
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            transform: translateY(-5px);
+            border-color: transparent;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-up {
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .nav-links { display: none; }
+            section { padding: 5rem 0; }
+            .section-title { font-size: 2.2rem; }
+            .project-card { padding: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">NT.</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="badge animate-up"><i class="fas fa-sparkles"></i> Xin chào, mình là</div>
+            <h1 class="animate-up delay-1">Nguyễn Thông<br><span>Frontend Developer</span></h1>
+            <p class="animate-up delay-2">
+                Mình là một lập trình viên đam mê kiến tạo trải nghiệm người dùng tối ưu và sắc nét trên nền tảng web. 
+                Định hướng chuyên sâu vào hệ sinh thái React, mình yêu thích việc chuyển đổi những ý tưởng thiết kế thành mã nguồn sạch đẹp, hiệu suất cao.
+            </p>
+            <div class="btn-group animate-up delay-3">
+                <a href="#projects" class="btn btn-primary">Xem Dự Án <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-secondary">Liên Hệ Mình</a>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Kỹ Năng <span>Chuyên Môn</span></h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fab fa-react skill-icon"></i>
+                    <div class="skill-name">React</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js skill-icon"></i>
+                    <div class="skill-name">JavaScript</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-html5 skill-icon"></i>
+                    <div class="skill-name">HTML5 / CSS3</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-wind skill-icon"></i>
+                    <div class="skill-name">Tailwind CSS</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-leaf skill-icon"></i>
+                    <div class="skill-name">Spring Boot</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database skill-icon"></i>
+                    <div class="skill-name">MySQL</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-satellite-dish skill-icon"></i>
+                    <div class="skill-name">WebSockets</div>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-git-alt skill-icon"></i>
+                    <div class="skill-name">Git</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Dự Án <span>Tiêu Biểu</span></h2>
+            <div class="projects-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <span class="project-category">Single-Page Application</span>
+                    <h3 class="project-title">Clinic Appointment Binding & Check-in</h3>
+                    <p class="project-desc">
+                        Hệ thống đặt lịch khám bệnh trực tuyến được xây dựng với kiến trúc SPA tối ưu. 
+                        Nổi bật với tính năng <strong>tự động check-in qua QR code generation/scanning</strong>. 
+                        Tích hợp phân quyền chặt chẽ Role-based Access Control (RBAC) cùng Spring Security.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">JWT</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <span class="project-category">Real-time Web App</span>
+                    <h3 class="project-title">Interactive Real-time Assistant</h3>
+                    <p class="project-desc">
+                        Ứng dụng trò chuyện và thông báo thời gian thực tích hợp WebSockets. 
+                        Giao diện mượt mà xây dựng trên Vite & Tailwind CSS. Triển khai đăng nhập nhanh với <strong>Google OAuth 2.0</strong>, 
+                        cùng cơ chế Global Axios Interceptors quản lý dữ liệu linh hoạt.
+                    </p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Vite</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">WebSockets</span>
+                        <span class="tech-tag">OAuth 2.0</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-box">
+                <h2>Cùng Hợp Tác <span>Với Mình</span></h2>
+                <p>
+                    Hiện tại mình đang tìm kiếm cơ hội thực tập <strong>Intern Frontend Developer</strong> để ứng dụng kiến thức vào thực tế và không ngừng học hỏi. Nếu bạn có cơ hội phù hợp, đừng ngần ngại kết nối nhé!
+                </p>
+                <a href="mailto:nguyenthong@example.com" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Gửi Email Ngay
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-links">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p>&copy; 2026 Nguyễn Thông. All Rights Reserved.</p>
+        </footer>
+    </div>
+    
+    <!-- Intersection Observer for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, currentObserver) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = `fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards ${entry.target.dataset.delay || '0s'}`;
+                        currentObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Select elements to animate
+            const animatedElements = document.querySelectorAll('.project-card, .skill-item');
+            animatedElements.forEach((el, index) => {
+                el.style.opacity = '0';
+                // Stagger delay based on index for grid elements
+                const delay = el.classList.contains('skill-item') ? (index % 4) * 0.1 : (index % 2) * 0.2;
+                el.dataset.delay = `${delay}s`;
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
