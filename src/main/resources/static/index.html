@@ -352,20 +352,33 @@
             color: #d1d5db;
         }
 
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
         .project-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             color: var(--text-primary);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
-            margin-top: auto;
+            transition: all 0.3s ease;
         }
 
         .project-link:hover {
+            background: rgba(255, 255, 255, 0.08);
             color: var(--accent-1);
+            transform: translateY(-3px);
+            border-color: rgba(99, 102, 241, 0.3);
         }
 
         /* Contact Section */
@@ -544,6 +557,10 @@
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">JWT</span>
                     </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="https://github.com/karal202/clinic-appointment-booking.git"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="project-link"><i class="fas fa-globe"></i> Website</a>
+                    </div>
                 </div>
 
                 <!-- Project 2 -->
@@ -561,6 +578,10 @@
                         <span class="tech-tag">Tailwind CSS</span>
                         <span class="tech-tag">WebSockets</span>
                         <span class="tech-tag">OAuth 2.0</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="https://github.com/karal202/tvnandrenaline.git"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="https://tvnandrenaline.vercel.app"><i class="fas fa-globe"></i> Website</a>
                     </div>
                 </div>
 
